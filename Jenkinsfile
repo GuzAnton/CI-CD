@@ -1,26 +1,34 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger',
+]
+
 pipeline{
     agent any
     tools {
-        maven 'MAVEN3'
-        jdk 'JDK8'
+        maven "MAVEN3"
+        jdk "JDK8"
     }
+    
     environment{
-        SNAP_REPO = 'vpofile-snapshot'
+        SNAP_REPO = 'vprofile-snapshot'
         NEXUS_USER = 'admin'
         NEXUS_PASS = '1'
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
-        NEXUSIP = '172.31.18.47'
+        NEXUSIP = '172.31.22.1'
         NEXUSPORT = '8081'
+        NEXUS_GRP_REPO = 'vpro-maven-group'
         NEXUS_LOGIN = 'nexuslogin'
-        NEXUS_GRP_REPO = 'vrpo-maven-group'
+        SONARSERVER = 'sonarserver'
+        SONARSCANNER = 'sonarscanner'    
     }
-
-    stages {
+    
+    stages{
         stage('Build'){
             steps{
                 sh 'mvn -s settings.xml -DskipTests install'
             }
         }
     }
-}
+}        
