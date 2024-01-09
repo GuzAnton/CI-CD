@@ -90,7 +90,7 @@ pipeline{
                 )
             }
         }
-        stage("Ansible deploy to staging")
+        stage("Ansible deploy to staging"){
             steps{
                 ansiblePLaybook([
                     inventory : 'ansible/stage.inventory',
@@ -112,6 +112,7 @@ pipeline{
                     ]
                 ])
             }
+        }    
     }
     post{
         always{
