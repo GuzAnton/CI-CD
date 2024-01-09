@@ -90,29 +90,7 @@ pipeline{
                 )
             }
         }
-        stage("Ansible deploy to staging"){
-            steps{
-                ansiblePLaybook([
-                    inventory : 'ansible/stage.inventory',
-                    playbook: 'ansible/site.yml',
-                    installation: 'ansible',
-                    colorized: true,
-                    credentialsId: 'applogin',
-                    disableHostKeyChecking: true,
-                    extravars: [
-                        USER: "admin",
-                        PASS: "1",
-                        nexusip: "172.31.18.47",
-                        reponame: "vprofile-release",
-                        groupid: "QA",
-                        time: "env.BUILD_TIMESTAMP",
-                        build: "env.BUILD_ID",
-                        artifactId: "vproapp",
-                        vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
-                    ]
-                ])
-            }
-        }    
+         
     }
     post{
         always{
