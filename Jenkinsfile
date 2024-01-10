@@ -92,7 +92,7 @@ pipeline{
         }
         stage("Ansible deploy to staging"){
             steps{
-                ansiblePLaybook([
+                ansiblePlaybook([
                     inventory : 'ansible/stage.inventory',
                     playbook: 'ansible/site.yml',
                     installation: 'ansible',
