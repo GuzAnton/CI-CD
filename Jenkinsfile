@@ -99,7 +99,7 @@ pipeline{
                     colorized: true,
                     credentialsId: 'applogin',
                     disableHostKeyChecking: true,
-                    extravars: [
+                    extraVars: [
                         USER: "admin",
                         PASS: "${NEXUSPASS}",
                         nexusip: "172.31.18.47",
