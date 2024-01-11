@@ -84,7 +84,7 @@
          mode: "a+x"
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < '16'
 
-    - name: Setup tomcat SVC file on ubuntu 16 and 18
+    - name: Setup tomcat SVC file on ubuntu 16, 18 and 20
       template:
          src: templates/ubuntu16-svcfile.j2
          dest: /etc/systemd/system/tomcat.service
@@ -94,6 +94,13 @@
     - name: Reload tomcat svc config in ubuntu 14/15
       command: update-rc.d tomcat defaults
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < '16'
+
+    - name: Reload tomcat svc config in ubuntu 16+
+      systemd:
+        name: tomcat
+        state: restarted
+        when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version >= '16'
+
 
     - name: Reload tomcat svc config in Centos 6
       command: chkconfig --add tomcat
