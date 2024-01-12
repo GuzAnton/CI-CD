@@ -22,7 +22,7 @@ pipeline{
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
-        NEXUSPASS = credentials("nexuspass")
+        NEXUSPASS = credentials('nexuspass')
     }
     
     stages{
@@ -92,7 +92,7 @@ pipeline{
         }
         stage("Ansible deploy to staging"){
             steps{
-                ansiblePlaybook([
+                ansiblePlaybook(
                     inventory : 'ansible/stage.inventory',
                     playbook: 'ansible/site.yml',
                     installation: 'ansible',
@@ -110,7 +110,7 @@ pipeline{
                         artifactId: "vproapp",
                         vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
                     ]
-                ])
+                )
             }
         }    
     }
