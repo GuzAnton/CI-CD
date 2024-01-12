@@ -98,9 +98,9 @@ pipeline{
                     colorized: true,
                     credentialsId: 'applogin',
                     disableHostKeyChecking: true,
-                    extraVars : [
+                    extraVars = [
                         USER: "admin",
-                        PASS: "${NEXUS_PASS}"
+                        PASS: "${NEXUS_PASS}",
                         nexusip: "172.31.18.47",
                         reponame: "vprofile-release",
                         groupid: "QA",
